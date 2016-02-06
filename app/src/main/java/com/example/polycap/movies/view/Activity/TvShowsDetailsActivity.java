@@ -1,6 +1,5 @@
 package com.example.polycap.movies.view.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.polycap.movies.R;
 import com.example.polycap.movies.presenter.TvDetailsPresenter;
-import com.example.polycap.movies.rest.models.TvDetailsModel;
+import com.example.polycap.movies.model.TvDetailsModel;
 import com.example.polycap.movies.view.EntertainmentApp;
 import com.squareup.picasso.Picasso;
 

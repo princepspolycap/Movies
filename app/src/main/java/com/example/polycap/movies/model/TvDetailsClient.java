@@ -1,8 +1,6 @@
-package com.example.polycap.movies.rest;
+package com.example.polycap.movies.model;
 
 import com.example.polycap.movies.R;
-import com.example.polycap.movies.model.MovieModel;
-import com.example.polycap.movies.rest.models.TvDetailsModel;
 import com.example.polycap.movies.view.EntertainmentApp;
 
 import retrofit.RestAdapter;
@@ -36,11 +34,6 @@ public class TvDetailsClient {
         @GET("/tv/{id}")
         Observable<TvDetailsModel> getTvDetails(
                 @Path("id") String tvId,
-                @Query("api_key") String key);
-
-        @GET("/tv/top_rated")
-        Observable<MovieModel> getMovieDetails(
-                @Path("idm") String idm,
                 @Query("api_key") String key);
     }
 

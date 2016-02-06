@@ -1,6 +1,5 @@
-package com.example.polycap.movies.rest.models;
+package com.example.polycap.movies.model;
 
-import com.example.polycap.movies.rest.TvDetailsClient;
 import com.example.polycap.movies.view.EntertainmentApp;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -90,7 +89,7 @@ public class TvDetailsModel {
     private String firstAirDate;
     @SerializedName("genres")
     @Expose
-    private List<Genre> genres = new ArrayList<Genre>();
+    private List<Genre> genres = new ArrayList<com.example.polycap.movies.model.Genre>();
     @SerializedName("homepage")
     @Expose
     private String homepage;
@@ -138,7 +137,7 @@ public class TvDetailsModel {
     private String posterPath;
     @SerializedName("production_companies")
     @Expose
-    private List<ProductionCompany> productionCompanies = new ArrayList<ProductionCompany>();
+    private List<com.example.polycap.movies.model.ProductionCompany> productionCompanies = new ArrayList<>();
     @SerializedName("seasons")
     @Expose
     private List<Season> seasons = new ArrayList<Season>();
@@ -214,14 +213,14 @@ public class TvDetailsModel {
     /**
      * @return The genres
      */
-    public List<Genre> getGenres() {
+    public List<com.example.polycap.movies.model.Genre> getGenres() {
         return genres;
     }
 
     /**
      * @param genres The genres
      */
-    public void setGenres(List<Genre> genres) {
+    public void setGenres(List<com.example.polycap.movies.model.Genre> genres) {
         this.genres = genres;
     }
 
@@ -438,14 +437,14 @@ public class TvDetailsModel {
     /**
      * @return The productionCompanies
      */
-    public List<ProductionCompany> getProductionCompanies() {
+    public List<com.example.polycap.movies.model.ProductionCompany> getProductionCompanies() {
         return productionCompanies;
     }
 
     /**
      * @param productionCompanies The production_companies
      */
-    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+    public void setProductionCompanies(List<com.example.polycap.movies.model.ProductionCompany> productionCompanies) {
         this.productionCompanies = productionCompanies;
     }
 
@@ -521,209 +520,3 @@ public class TvDetailsModel {
 
 }
 
-class Genre {
-
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-
-    /**
-     * @return The id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return The name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name The name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-}
-
-class Network {
-
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-
-    /**
-     * @return The id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return The name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name The name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-}
-
-class ProductionCompany {
-
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-
-    /**
-     * @return The name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name The name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return The id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-}
-
-class Season {
-
-    @SerializedName("air_date")
-    @Expose
-    private String airDate;
-    @SerializedName("episode_count")
-    @Expose
-    private Integer episodeCount;
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("poster_path")
-    @Expose
-    private Object posterPath;
-    @SerializedName("season_number")
-    @Expose
-    private Integer seasonNumber;
-
-    /**
-     * @return The airDate
-     */
-    public String getAirDate() {
-        return airDate;
-    }
-
-    /**
-     * @param airDate The air_date
-     */
-    public void setAirDate(String airDate) {
-        this.airDate = airDate;
-    }
-
-    /**
-     * @return The episodeCount
-     */
-    public Integer getEpisodeCount() {
-        return episodeCount;
-    }
-
-    /**
-     * @param episodeCount The episode_count
-     */
-    public void setEpisodeCount(Integer episodeCount) {
-        this.episodeCount = episodeCount;
-    }
-
-    /**
-     * @return The id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return The posterPath
-     */
-    public Object getPosterPath() {
-        return posterPath;
-    }
-
-    /**
-     * @param posterPath The poster_path
-     */
-    public void setPosterPath(Object posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    /**
-     * @return The seasonNumber
-     */
-    public Integer getSeasonNumber() {
-        return seasonNumber;
-    }
-
-    /**
-     * @param seasonNumber The season_number
-     */
-    public void setSeasonNumber(Integer seasonNumber) {
-        this.seasonNumber = seasonNumber;
-    }
-
-}

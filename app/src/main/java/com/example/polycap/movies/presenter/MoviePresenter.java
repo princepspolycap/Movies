@@ -73,7 +73,6 @@ public class MoviePresenter implements EntertainmentPresenter, ItemClickListener
         Log.v(TAG, "onItemSelected");
         mPosition = movieResults.get(position).getId();
         Intent mMovieIdIntent = new Intent(EntertainmentApp.getContext(), MovieDetailsActivity.class);
-        mMovieIdIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mMovieIdIntent.putExtra("id",mPosition);
         Log.v(TAG, "Position clicked " + mPosition);
         movieView.getActivity().startActivity(mMovieIdIntent);

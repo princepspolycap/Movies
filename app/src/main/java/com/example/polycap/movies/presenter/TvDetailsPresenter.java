@@ -2,7 +2,7 @@ package com.example.polycap.movies.presenter;
 
 import android.util.Log;
 
-import com.example.polycap.movies.rest.models.TvDetailsModel;
+import com.example.polycap.movies.model.TvDetailsModel;
 import com.example.polycap.movies.view.Activity.TvDetails;
 
 import rx.Observable;
