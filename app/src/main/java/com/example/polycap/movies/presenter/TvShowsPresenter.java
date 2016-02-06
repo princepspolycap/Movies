@@ -73,7 +73,6 @@ public class TvShowsPresenter implements EntertainmentPresenter, ItemClickListen
         Log.v(TAG, "onItemSelected");
         tPosition = tvShowsResults.get(position).getId();
         Intent tvIntent = new Intent(EntertainmentApp.getContext(), TvShowsDetailsActivity.class);
-        tvIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
         tvIntent.putExtra("id", tPosition);
         Log.v(TAG,"TV Position clicked" + tPosition);
         tvShowsView.getActivity().startActivity(tvIntent);

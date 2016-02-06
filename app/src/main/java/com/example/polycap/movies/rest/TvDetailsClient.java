@@ -28,8 +28,8 @@ public class TvDetailsClient {
         tDetailsAPI = restAdapter.create(TvAPI.class);
     }
 
-    public Observable<TvDetailsModel> getTvResults(String tVshowId) {
-        return tDetailsAPI.getTvDetails(tVshowId, EntertainmentApp.getContext().getString(R.string.apikey));
+    public Observable<TvDetailsModel> getTvResults(String id) {
+        return tDetailsAPI.getTvDetails(id , EntertainmentApp.getContext().getString(R.string.apikey));
     }
 
     public interface TvAPI {
@@ -39,7 +39,8 @@ public class TvDetailsClient {
                 @Query("api_key") String key);
 
         @GET("/tv/top_rated")
-        Observable<MovieModel> getTvshowDetails(
+        Observable<MovieModel> getMovieDetails(
+                @Path("idm") String idm,
                 @Query("api_key") String key);
     }
 

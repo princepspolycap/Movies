@@ -4,6 +4,8 @@
     <string name="Entertainment_DB">http://api.themoviedb.org/3</string>
     <string name="apikey">f560a46ebc27487c987ab7994303a29a</string>
     <string name="action_settings">action_settings</string>
+    <string name="Overview">Overview</string>
+
     <string-array name="Tabs">
         <item>Popular Movies</item>
         <item>Top Rated Tv Shows</item>
