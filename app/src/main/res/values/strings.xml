@@ -5,6 +5,7 @@
     <string name="apikey">f560a46ebc27487c987ab7994303a29a</string>
     <string name="action_settings">action_settings</string>
     <string name="Overview">Overview</string>
+    <string name="DEVELOPER_KEY">AIzaSyCPVf0fpH1h4Ti3VrwtB78AbgsELV7MfTg</string>
 
     <string-array name="Tabs">
         <item>Popular Movies</item>
