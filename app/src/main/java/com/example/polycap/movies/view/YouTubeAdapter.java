@@ -21,14 +21,14 @@ import java.util.List;
 /**
  * Created by 186 on 2/15/2016.
  */
-public class YouTubeAdapter extends RecyclerView.Adapter<YouTubeAdapter.MovieDViewHolder> {
+public class YouTubeAdapter extends RecyclerView.Adapter<YouTubeAdapter.DetailsVideoHolder> {
     private static final int TYPE_HEADER = 2;
     private static final int TYPE_ITEM = 1;
-    MovieDViewHolder holder;
+    DetailsVideoHolder holder;
     private List<VideoItem> searchResults = new ArrayList<>();
     private String overviewText;
 
-    public void onBindViewHolder(MovieDViewHolder holder, final int position) {
+    public void onBindViewHolder(DetailsVideoHolder holder, final int position) {
         this.holder = holder;
         if (position == 0) {
             holder.overviewText.setText(overviewText);
@@ -52,16 +52,16 @@ public class YouTubeAdapter extends RecyclerView.Adapter<YouTubeAdapter.MovieDVi
 
     @Override
     public int getItemViewType(int position) {
-        if(position == 0)return TYPE_HEADER;
+        if (position == 0) return TYPE_HEADER;
         else
-        return TYPE_ITEM;
+            return TYPE_ITEM;
     }
 
-    public MovieDViewHolder onCreateViewHolder(ViewGroup root, int viewType) {
-        if(viewType == TYPE_HEADER){
-            return new MovieDViewHolder(LayoutInflater.from(root.getContext()).inflate(R.layout.overview_header, root, false));
+    public DetailsVideoHolder onCreateViewHolder(ViewGroup root, int viewType) {
+        if (viewType == TYPE_HEADER) {
+            return new DetailsVideoHolder(LayoutInflater.from(root.getContext()).inflate(R.layout.overview_header, root, false));
         }
-        return new MovieDViewHolder(LayoutInflater.from(root.getContext()).inflate(R.layout.video_item, root, false));
+        return new DetailsVideoHolder(LayoutInflater.from(root.getContext()).inflate(R.layout.video_item, root, false));
     }
 
     public void setSearchResults(List<VideoItem> list) {
@@ -77,13 +77,13 @@ public class YouTubeAdapter extends RecyclerView.Adapter<YouTubeAdapter.MovieDVi
     }
 
 
-    class MovieDViewHolder extends RecyclerView.ViewHolder {
+    class DetailsVideoHolder extends RecyclerView.ViewHolder {
         private final TextView overviewText;
         public TextView title;
         View row;
         public ImageView thumbnail;
 
-        public MovieDViewHolder(View view) {
+        public DetailsVideoHolder(View view) {
             super(view);
             this.thumbnail = (ImageView) view.findViewById(R.id.video_thumbnail);
             this.title = (TextView) view.findViewById(R.id.video_title);

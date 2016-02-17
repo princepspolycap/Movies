@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Polycap on 1/31/2016.
  */
-public class MovieDetailsActivity extends AppCompatActivity implements MovieDetailsI{
+public class MovieDetailsActivity extends AppCompatActivity implements MovieDetailsI {
 
     private final static String IMG_ENDPOINT = "https://image.tmdb.org/t/p/w500/";
 
@@ -62,7 +62,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieDeta
 
         ImageView mbackdrop = (ImageView) findViewById(R.id.backdrop);
         Picasso.with(this).setLoggingEnabled(true);
-        String mbackdropUrl = IMG_ENDPOINT+movieDetailsModel.getBackdropPath();
+        String mbackdropUrl = IMG_ENDPOINT + movieDetailsModel.getBackdropPath();
         Picasso.with(this).load(mbackdropUrl).into(mbackdrop);
         adapter.setOverViewText(movieDetailsModel.getOverview());
 
@@ -72,7 +72,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieDeta
     public void youtubeData(List<VideoItem> youtubeVideos) {
         adapter.setSearchResults(youtubeVideos);
         adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
 
 
     }

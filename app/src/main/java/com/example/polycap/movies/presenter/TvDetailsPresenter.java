@@ -3,9 +3,15 @@ package com.example.polycap.movies.presenter;
 import android.util.Log;
 
 import com.example.polycap.movies.model.TvDetailsModel;
+import com.example.polycap.movies.model.VideoItem;
+import com.example.polycap.movies.model.YoutubeConnector;
 import com.example.polycap.movies.view.Activity.TvDetails;
+import com.example.polycap.movies.view.EntertainmentApp;
+
+import java.util.List;
 
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -17,11 +23,11 @@ public class TvDetailsPresenter {
 
     TvDetails tView;
 
-    public TvDetailsPresenter (TvDetails tvDetails){
+    public TvDetailsPresenter(TvDetails tvDetails) {
         this.tView = tvDetails;
     }
 
-    public void getData(int id){
+    public void getData(int id) {
 
         Observable<TvDetailsModel> tvShowModelObservable = TvDetailsModel.requestTvShowDetails(String.valueOf(id));
         tvShowModelObservable.observeOn(AndroidSchedulers.mainThread())
@@ -32,7 +38,26 @@ public class TvDetailsPresenter {
                 }, Throwable::printStackTrace);
     }
 
-    public void sendData(TvDetailsModel tvDetailsModel){
+    public void sendData(TvDetailsModel tvDetailsModel) {
         tView.displayData(tvDetailsModel);
     }
+
+
+    public void searchOnYoutube(final String title) {
+        Observable.create(new Observable.OnSubscribe<List<VideoItem>>() {
+            @Override
+            public void call(Subscriber<? super List<VideoItem>> subscriber) {
+                YoutubeConnector youtubeConnector = new YoutubeConnector(EntertainmentApp.getContext());
+                subscriber.onNext(youtubeConnector.search(title));
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::updatingTvVideo, Throwable::printStackTrace);
+    }
+
+    private void updatingTvVideo(List<VideoItem> videoItems) {
+        tView.youtubeVideos(videoItems);
+    }
+
+
 }
