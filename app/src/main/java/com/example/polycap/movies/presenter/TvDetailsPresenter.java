@@ -2,9 +2,9 @@ package com.example.polycap.movies.presenter;
 
 import android.util.Log;
 
+import com.example.polycap.movies.model.SearchYoutube;
 import com.example.polycap.movies.model.TvDetailsModel;
 import com.example.polycap.movies.model.VideoItem;
-import com.example.polycap.movies.model.YoutubeConnector;
 import com.example.polycap.movies.view.Activity.TvDetails;
 import com.example.polycap.movies.view.EntertainmentApp;
 
@@ -47,8 +47,8 @@ public class TvDetailsPresenter {
         Observable.create(new Observable.OnSubscribe<List<VideoItem>>() {
             @Override
             public void call(Subscriber<? super List<VideoItem>> subscriber) {
-                YoutubeConnector youtubeConnector = new YoutubeConnector(EntertainmentApp.getContext());
-                subscriber.onNext(youtubeConnector.search(title));
+                SearchYoutube searchYoutube = new SearchYoutube(EntertainmentApp.getContext());
+                subscriber.onNext(searchYoutube.search(title));
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -56,7 +56,7 @@ public class TvDetailsPresenter {
     }
 
     private void updatingTvVideo(List<VideoItem> videoItems) {
-        tView.youtubeVideos(videoItems);
+        tView.getDetailsData(videoItems);
     }
 
 

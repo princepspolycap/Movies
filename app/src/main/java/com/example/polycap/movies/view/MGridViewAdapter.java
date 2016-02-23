@@ -68,7 +68,7 @@ public class MGridViewAdapter extends RecyclerView.Adapter<MGridViewAdapter.Grid
             return 0;
     }
 
-    public void setData(List<MovieResult> data) {
+    public void sendMovieData(List<MovieResult> data) {
         this.results = data;
     }
 

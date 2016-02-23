@@ -24,5 +24,6 @@
     <color name="cardBackgroudText">#f34f4f4f</color>
 
 
-    <color name="transparent_black">#9c000000</color>
+    <color name="transparent_black">#16000000</color>
+    <color name="actionbar_opacity">#00000000</color>
 </resources>

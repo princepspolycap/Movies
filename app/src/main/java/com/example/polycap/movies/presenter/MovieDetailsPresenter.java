@@ -2,11 +2,10 @@ package com.example.polycap.movies.presenter;
 
 import com.example.polycap.movies.model.MovieDetailsModel;
 import com.example.polycap.movies.model.VideoItem;
-import com.example.polycap.movies.model.YoutubeConnector;
+import com.example.polycap.movies.model.SearchYoutube;
 import com.example.polycap.movies.view.Activity.MovieDetailsI;
 import com.example.polycap.movies.view.EntertainmentApp;
 
-import java.io.IOException;
 import java.util.List;
 
 import rx.Observable;
@@ -26,16 +25,16 @@ public class MovieDetailsPresenter {
     }
 
 
-    public void getMovieDdata(int id) {
+    public void getMoviesDetailsData(int id) {
 
         Observable<MovieDetailsModel> detailsModelObservable = MovieDetailsModel.requestMovieDetails(String.valueOf(id));
         detailsModelObservable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(this::sendMovieDdata, Throwable::printStackTrace);
+                .subscribe(this::sendMovieDetails, Throwable::printStackTrace);
     }
 
-    private void sendMovieDdata(MovieDetailsModel movieDetailsModel) {
+    private void sendMovieDetails(MovieDetailsModel movieDetailsModel) {
         movieDetailsI.displayMovieData(movieDetailsModel);
     }
 
@@ -43,8 +42,8 @@ public class MovieDetailsPresenter {
         Observable.create(new Observable.OnSubscribe<List<VideoItem>>() {
             @Override
             public void call(Subscriber<? super List<VideoItem>> subscriber) {
-                YoutubeConnector youtubeConnector = new YoutubeConnector(EntertainmentApp.getContext());
-                subscriber.onNext(youtubeConnector.search(title));
+                SearchYoutube searchYoutube = new SearchYoutube(EntertainmentApp.getContext());
+                subscriber.onNext(searchYoutube.search(title));
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -53,6 +52,6 @@ public class MovieDetailsPresenter {
 
 
     public void updateVideosFound(List<VideoItem> youtubeVideos) {
-        movieDetailsI.youtubeData(youtubeVideos);
+        movieDetailsI.getYoutubeData(youtubeVideos);
     }
 }

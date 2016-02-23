@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TvDetails {
     void displayData(TvDetailsModel tvShowModel);
-    void youtubeVideos (List<VideoItem> videoItems);
+    void getDetailsData(List<VideoItem> videoItems);
 }

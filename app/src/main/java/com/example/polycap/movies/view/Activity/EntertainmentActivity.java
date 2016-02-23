@@ -1,19 +1,23 @@
 package com.example.polycap.movies.view.Activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.polycap.movies.R;
 import com.example.polycap.movies.view.EntertainmentApp;
 import com.example.polycap.movies.view.Fragments.MoviesFragment;
 import com.example.polycap.movies.view.Fragments.TvShowsFragment;
 import com.example.polycap.movies.view.tabs.SlidingTabLayout;
+
 /**
  * Created by Polycap on 2/1/2016.
  */
@@ -23,7 +27,6 @@ public class EntertainmentActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
-    EntertainmentApp getContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +35,23 @@ public class EntertainmentActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabs);
-        slidingTabLayout.setViewPager(viewPager);
         slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setViewPager(viewPager);
+
+
 
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
-
 
     class MyPagerAdapter extends FragmentPagerAdapter {
         String[] tabs;
@@ -61,7 +64,7 @@ public class EntertainmentActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-       Fragment fragment = null;
+            Fragment fragment = null;
             switch (position) {
                 case 0:
                     fragment = new MoviesFragment();

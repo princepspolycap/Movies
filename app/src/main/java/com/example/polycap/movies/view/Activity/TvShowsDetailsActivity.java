@@ -1,13 +1,16 @@
 package com.example.polycap.movies.view.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.polycap.movies.R;
 import com.example.polycap.movies.model.VideoItem;
@@ -26,9 +29,9 @@ public class TvShowsDetailsActivity extends AppCompatActivity implements TvDetai
 
     private final static String IMG_ENDPOINT = "https://image.tmdb.org/t/p/w500/";
 
-    public Toolbar toolbr;
+    public Toolbar toolbar;
     public CollapsingToolbarLayout collapsingToolbarLayout;
-    protected TvDetailsPresenter presenter;
+    protected TvDetailsPresenter tvDetailsPresenter;
     EntertainmentApp getContext;
     private YouTubeAdapter adapter;
     private RecyclerView recyclerView;
@@ -38,10 +41,6 @@ public class TvShowsDetailsActivity extends AppCompatActivity implements TvDetai
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_entertainment);
 
-        toolbr = (Toolbar) findViewById(R.id.toolbr);
-        setSupportActionBar(toolbr);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         int id;
         id = getIntent().getExtras().getInt("id");
 
@@ -50,8 +49,13 @@ public class TvShowsDetailsActivity extends AppCompatActivity implements TvDetai
         adapter = new YouTubeAdapter();
         recyclerView.setAdapter(adapter);
 
-        presenter = new TvDetailsPresenter(this);
-        presenter.getData(id);
+
+        toolbar = (Toolbar) findViewById(R.id.detailstoolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tvDetailsPresenter = new TvDetailsPresenter(this);
+        tvDetailsPresenter.getData(id);
 
     }
 
@@ -71,16 +75,28 @@ public class TvShowsDetailsActivity extends AppCompatActivity implements TvDetai
         Picasso.with(getContext).load(backdrpUrl).into(backdrop);
         adapter.setOverViewText(tvShowModel.getOverview());
 
-        presenter.searchOnYoutube(title);
-
+        tvDetailsPresenter.searchOnYoutube(title);
 
     }
 
     @Override
-    public void youtubeVideos(List<VideoItem> videoItems) {
+    public void getDetailsData(List<VideoItem> videoItems) {
         adapter.setSearchResults(videoItems);
         adapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), EntertainmentActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 
 

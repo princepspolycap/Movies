@@ -10,7 +10,6 @@ import java.util.List;
  */
 public interface MovieDetailsI {
     void displayMovieData ( MovieDetailsModel movieDetailsModel);
-    void
-    youtubeData(List<VideoItem> youtubeVideos);
+    void getYoutubeData(List<VideoItem> youtubeVideos);
 
 }

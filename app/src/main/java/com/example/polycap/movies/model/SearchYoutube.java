@@ -17,16 +17,15 @@ import java.util.List;
 /**
  * Created by 186 on 2/15/2016.
  */
-public class YoutubeConnector {
-    private static final String TAG = YoutubeConnector.class.getSimpleName();
-    private YouTube youtube;
+public class SearchYoutube {
+    private static final String TAG = SearchYoutube.class.getSimpleName();
     private YouTube.Search.List query;
 
     public static final String KEY = "AIzaSyCPVf0fpH1h4Ti3VrwtB78AbgsELV7MfTg";
 
 
-    public YoutubeConnector(Context context) {
-        youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), httpRequest -> {
+    public SearchYoutube(Context context) {
+        YouTube youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), httpRequest -> {
         }).setApplicationName(context.getString(R.string.app_name)).build();
 
         try {
@@ -36,7 +35,7 @@ public class YoutubeConnector {
             query.setMaxResults(10L);
             query.setFields("items(id/videoId,snippet/title,snippet/description,snippet/thumbnails/high/url)");
 
-            Log.d(TAG, "YoutubeConnector:" + query.toString());
+            Log.d(TAG, "SearchYoutube:" + query.toString());
         } catch (IOException e) {
             Log.d("YC", "Could not initialize: " + e.getMessage());
         }

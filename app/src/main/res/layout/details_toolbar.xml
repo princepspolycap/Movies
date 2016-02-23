@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
     android:layout_above="@+id/backdrop"
-    android:background="@color/primaryColor"
+    android:background="@color/actionbar_opacity"
+    android:elevation="15dp"
     app:layout_collapseMode="pin"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -31,7 +31,7 @@ public class MoviesFragment extends MovieView {
 
     @Override
     public void displayData(List<MovieResult> movies) {
-        adapter.setData(movies);
+        adapter.sendMovieData(movies);
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
         }

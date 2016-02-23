@@ -6,6 +6,7 @@
     <string name="action_settings">action_settings</string>
     <string name="Overview">Overview</string>
     <string name="DEVELOPER_KEY">AIzaSyCPVf0fpH1h4Ti3VrwtB78AbgsELV7MfTg</string>
+    <string name="menu_settings">Settings</string>
 
     <string-array name="Tabs">
         <item>Popular Movies</item>

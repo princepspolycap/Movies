@@ -1,20 +1,22 @@
 package com.example.polycap.movies.view.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.polycap.movies.R;
 import com.example.polycap.movies.model.MovieDetailsModel;
 import com.example.polycap.movies.model.VideoItem;
 import com.example.polycap.movies.presenter.MovieDetailsPresenter;
 import com.example.polycap.movies.view.YouTubeAdapter;
-import com.example.polycap.movies.view.EntertainmentApp;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -32,7 +34,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieDeta
     private YouTubeAdapter adapter;
     private RecyclerView recyclerView;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,13 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieDeta
         recyclerView.setAdapter(adapter);
 
         movieDetailsPresenter = new MovieDetailsPresenter(this);
-        movieDetailsPresenter.getMovieDdata(id);
+        movieDetailsPresenter.getMoviesDetailsData(id);
+
+
+        toolbar = (Toolbar) findViewById(R.id.detailstoolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
 
@@ -60,19 +67,35 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieDeta
         mcollapsingtoolbar.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
         mcollapsingtoolbar.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
 
+
         ImageView mbackdrop = (ImageView) findViewById(R.id.backdrop);
         Picasso.with(this).setLoggingEnabled(true);
         String mbackdropUrl = IMG_ENDPOINT + movieDetailsModel.getBackdropPath();
         Picasso.with(this).load(mbackdropUrl).into(mbackdrop);
-        adapter.setOverViewText(movieDetailsModel.getOverview());
 
+        adapter.setOverViewText(movieDetailsModel.getOverview());
         movieDetailsPresenter.searchOnYoutube(title);
+
     }
 
-    public void youtubeData(List<VideoItem> youtubeVideos) {
+    public void getYoutubeData(List<VideoItem> youtubeVideos) {
+//        Get live YouTube Data
         adapter.setSearchResults(youtubeVideos);
         adapter.notifyDataSetChanged();
 
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), EntertainmentActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
+
 }
